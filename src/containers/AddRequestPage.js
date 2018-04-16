@@ -24,17 +24,18 @@ class AddRequestPage extends React.Component {
         event.preventDefault();
         const { message } = this.state;
         console.log(this.state);
-        if (message !== null) {
+        if (message !== null) {            
             this.props.dispatch(addRequestAction(message, this.props.token));            
         }
     }
     render() {
-        
+        const { error, requestId } = this.props;
         return (
             <div className="container-fluid">
             <RequestForm onHandleAdd={this.handleAdd} 
             onHandleOnChange={this.handleOnChange} 
-            error={this.props.error}
+            error={error}
+            requestId={requestId}
             />
             </div>
         );
@@ -50,7 +51,8 @@ const mapStateToProps = (state) => {
     
     return {
         token: state.auth.token,
-        error: state.addrequest.error
+        error: state.addrequest.error,
+        requestId: state.addrequest.Id,
     }
 };
 

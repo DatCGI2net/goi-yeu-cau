@@ -9,21 +9,26 @@ class RequestListPage extends React.Component {
         return (
             <div className="col-sm-12">
                 <h2>Requests</h2>
-                <div className="selected-request">
-                    <div key={selectedRequest.id}>
-                    <h4>{selectedRequest.message}</h4>
-                    <span className="col-sm-6 text text-xs">{selectedRequest.created}</span>
-                    <span className="col-sm-6">{selectedRequest.owner}</span>
-                    { selectedRequest.results && selectedRequest.results.length > 0?
-                        <ul className="list-group">
-                            { selectedRequest.results.map((result, i) => (
-                                <li key={result.id} className="list-group-item">
-                                <div>{result.description}</div>
-                                </li>
-                            )) }
-                        </ul>
-                        : null
-                    }
+                <div className="panel panel-default" key={selectedRequest.id} >
+                    
+                    <div className="panel-heading">{selectedRequest.message}</div>
+                    <div className="panel-body">
+                        <span className="col-sm-6 text text-xs">Date: {selectedRequest.created}</span>
+                        <span className="col-sm-6">Reply: {(selectedRequest.results && selectedRequest.results.length)?
+                                selectedRequest.results.length:
+                                0
+                                }</span>
+                        { selectedRequest.results && selectedRequest.results.length > 0?
+                            <ul className="list-group">
+                                { selectedRequest.results.map((result, i) => (
+                                    <li key={result.id} className="list-group-item">
+                                    <div>{result.description}</div>
+                                    </li>
+                                )) }
+                            </ul>
+                            : null
+                        }
+                        
                     </div>
                 </div>
 

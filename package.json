@@ -1,6 +1,6 @@
 {
   "name": "goiyeucau",
-  "version": "0.1.0",
+  "version": "0.1.0",  
   "private": true,
   "dependencies": {
     "react": "^16.3.1",
@@ -16,6 +16,7 @@
     "build": "rm -rf build/ && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "pushstate-server build"
+    "deploy": "pushstate-server build",
+    "homepage": "https://goiyeucau.herokuapp.com/static/build/"
   }
 }

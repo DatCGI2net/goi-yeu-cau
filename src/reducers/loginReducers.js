@@ -7,11 +7,11 @@ export default function (state = initialState.auth, {type, payload}) {
         case types.LOGIN_REQUEST_SUCCESS:
         case types.LOGOUT_REQUEST_SUCCESS:
             //console.log('login success:', type, payload);
-            return {...state, token: payload};
+            return {...state, token: payload, error: null};
         case types.LOGIN_REQUEST_FAILURE:
         case types.LOGOUT_REQUEST_FAILURE:
             //console.log('login error:', payload);
-            return {...state, error: payload};
+            return {...state, error: payload, token: null};
 
         default:
             return state;

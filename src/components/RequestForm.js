@@ -5,10 +5,15 @@ import { PropTypes } from 'prop-types';
 
 class RequestForm extends React.Component {
     render() {
-        const { onHandleAdd, onHandleOnChange, error } = this.props;
+        const { onHandleAdd, onHandleOnChange, error, requestId } = this.props;
         return(
         <div className="center">
             <h1 className="lead">Add new request</h1>
+            {requestId?
+            <p className="text text-success">Your request has been added successfully!</p>
+            :
+            null
+            }
             {error?
             <p className="text text-danger">{error}</p>
             :null
