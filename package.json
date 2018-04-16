@@ -17,6 +17,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "pushstate-server build",
-    "homepage": "https://goiyeucau.herokuapp.com/static/build/"
+    "homepage": "https://goiyeucau-reactjs.herokuapp.com/"
   }
 }
