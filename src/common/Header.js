@@ -5,11 +5,12 @@ class Header extends React.Component {
 
     render() {
         const { token, onHandleLogout } = this.props;
-        console.log('token in header:', token, this.props);
+        const baseUrl = process.env.PUBLIC_URL; // will be /hypercomp
+        console.log('token in header:', token, 'baseUrl:', baseUrl);
         return (
             <div className="text-center">
                 <nav className="navbar navbar-default">
-                <IndexLink to="/" activeClassName="active">Home</IndexLink>
+                <IndexLink to={baseUrl + "/"} activeClassName="active">Home</IndexLink>
                 {" | "}
                 <Link to="requests" activeClassName="active">Requests</Link>
                 {" | "}
