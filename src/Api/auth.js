@@ -1,4 +1,5 @@
 // export const BASEURL = 'http://127.0.0.1:8000/api';
+
 export const BASEURL = https://goiyeucau.herokuapp.com/api';
 export const APIURL = BASEURL+ '/v1';
 export const AUTHURL = APIURL + '/rest-auth'
