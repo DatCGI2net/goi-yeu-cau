@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
 import RequestPage from './containers/RequestPage';
 import AddRequestPage from './containers/AddRequestPage';
+import SignupPage from './containers/SignupPage';
 
 const baseUrl = process.env.PUBLIC_URL; // will be /hypercomp
 
@@ -14,6 +15,7 @@ export default (
         <Route path={baseUrl + "/login" } component={LoginPage} />
         <Route path={baseUrl + "/requests" } component={RequestPage} />
         <Route path={baseUrl + "/addrequest" } component={AddRequestPage} />
+        <Route path={baseUrl + "/signup" } component={SignupPage} />
     </Route>
 );
 

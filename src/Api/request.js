@@ -2,11 +2,15 @@ import {APIURL, API_HEADERS} from './auth';
 // common header
 const headers = Object.assign({}, API_HEADERS);
 
-export const fetchAllRequests = (query) => {
+export const fetchAllRequests = (queryparams) => {
     
-    let url = `${APIURL}/requests`;
-    if (query !== null)
-        url += `?query=${query !== null?query:''}`;
+    let url = `${APIURL}/requests?`;
+    let urls = [];
+    for (const k in queryparams) {
+        if (queryparams[k] !== null)
+            urls.push(k+'='+queryparams[k]);
+    }
+    url += urls.join("&");
 
     const params = {
         method: 'GET',

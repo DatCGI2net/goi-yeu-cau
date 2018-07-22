@@ -13,8 +13,9 @@ export const logoutAction = (payload) => (
     payload
 });
 
-export const signupAction = (email, password) => (
-{
-    type: types.SIGNUP_REQUEST,
-    email, password
-});
+
+export const signupAction = (payload) => (
+    {
+        type: types.SIGNUP_REQUEST,
+        payload
+    });

@@ -73,7 +73,7 @@ export function* logoutSaga({payload}) {
                 const token = null;
                 console.log('token:', res);
                 yield put({ type: types.LOGOUT_REQUEST_SUCCESS, payload: token});
-                localStorage.setItem('token', token);
+                localStorage.removeItem('token');
                 do_rediret('/login');   
             }else if (res.error) {
                 // got error

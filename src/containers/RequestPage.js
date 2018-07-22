@@ -10,10 +10,25 @@ class RequestPage extends React.Component {
         super(props);
         this.handleSelectedRequest = this.handleSelectedRequest.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
+        this.handleReply = this.handleReply.bind(this);
+        this.handleReplyChange = this.handleReplyChange(this);
+        this.state = {
+            limit: null,
+            offset: null,
+            query: null
+        }
     }
     componentDidMount() {
         this.props.dispatch(fetchAllRequestsAction(null));
     }
+    handleReply() {
+        console.log('handle Reply');
+    }
+    handleReplyChange() {
+        console.log('handleReplyOnChange');
+    }
+
     // handle selected
     handleSelectedRequest(selectedRequest) {
         this.props.dispatch(selectedRequestAction(selectedRequest));
@@ -22,10 +37,18 @@ class RequestPage extends React.Component {
     handleSearch(event) {
         event.preventDefault();
         if (this.query !== null) {
-            this.props.dispatch(fetchAllRequestsAction(this.query.value));
-            this.query.value = '';
-
+            this.setState({query: this.query.value}, function(){
+                this.props.dispatch(fetchAllRequestsAction(this.state));
+                this.query.value = '';
+            });
         }
+    }
+    handlePageClick(params) {
+        
+        this.setState({limit: params.limit, offset: params.offset}, function(){
+            console.log('handlePageClick:', this.state, params);
+            this.props.dispatch(fetchAllRequestsAction(this.state));
+        });
     }
     render() {
         const { requests, selectedRequest, token } = this.props;
@@ -37,26 +60,32 @@ class RequestPage extends React.Component {
             <input type="submit" className="btn btn-primary"
                 onClick={this.handleSearch} />  
 
-            {token?
-                <div className="row">
-                <div className="col-sm-12">
-                <Link to="addrequest">
-                <button className="btn btn-info">Add Request</button>
-                </Link>
-                </div>
-                </div>
-            :
-            null
-            }
+                
 
             <div className="row">
             <RequestListPage requests={requests}
                 selectedRequest={selectedRequest}
-                onHandleSelectRequest={this.handleSelectedRequest} />
+                onHandleSelectRequest={this.handleSelectedRequest}
+                onHandlePageClick={this.handlePageClick}
+                onHandleReply={this.handleReply}
+                onHandleReplyChange={this.handleReplyChange}
+            />
             </div> 
-            </div>: 'loadding...'}
-
+            </div>
             
+            :'loadding...'}
+
+            {token?
+                    <div className="row">
+                    <div className="col-sm-12">
+                    <Link to="addrequest">
+                    <button className="btn btn-info">Add Request</button>
+                    </Link>
+                    </div>
+                    </div>
+                :
+                null
+                }
             </div>
         );
     }
@@ -64,7 +93,7 @@ class RequestPage extends React.Component {
 
 RequestPage.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    requests: PropTypes.array,
+    requests: PropTypes.object,
     selectedRequest: PropTypes.object,
 };
 

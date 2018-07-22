@@ -1,6 +1,7 @@
-export const BASEURL = 'https://goiyeucau.herokuapp.com/api';
+export const BASEURL = 'http://127.0.0.1:8000/api';
+//https://goiyeucau.herokuapp.com/api';
 export const APIURL = BASEURL+ '/v1';
-
+export const AUTHURL = APIURL + '/rest-auth'
 
 export const API_HEADERS = {
     //'Accept': 'application/json',
@@ -10,16 +11,20 @@ export const API_HEADERS = {
 
 
 export const login = (username, password) => {
-    const url = `${BASEURL}/token-auth/`;
+    //const url = `${BASEURL}/token-auth/`;
+    const url = `${AUTHURL}/login/`;
+    
     return fetch(url, {
         method: 'POST',
         headers: API_HEADERS,
         body: JSON.stringify({
-            email: username,
+            username: username,
             password: password
         })
     })
-    .then((res) => { return res.json()})
+    .then((res) => { 
+        return res.json()
+    })
     .then((res) => {
         console.log('api res:', res);
         if (res.token){
@@ -31,10 +36,13 @@ export const login = (username, password) => {
         }
         
     }); 
+    
+
+    
 };
 
 export const logout = (token) => {
-    const url = `${BASEURL}/rest-auth/logout`;
+    const url = `${AUTHURL}/logout/`;
     return fetch(url)
     .then((res) => {
         console.log('logout first res:', res) ; 
@@ -46,18 +54,16 @@ export const logout = (token) => {
     }); 
 };
 
-export const signup = (username, password) => {
-    const url = `${APIURL}/users/create`;
+export const signup = (payload) => {
+    const url = `${AUTHURL}/registration/`;
     fetch(url, {
         method: 'POST',
         headers: API_HEADERS,
-        body: JSON.stringify({
-            username: username,
-            password: password
-        })
+        body: JSON.stringify(payload)
     })
     .then((res) => { return res.json()})
     .then((res) => {
+        console.log('sginpup res:', res) ; 
         return res;
     }); 
 };

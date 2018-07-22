@@ -14,7 +14,7 @@ export function* fetchRequestSaga({payload}) {
 
         yield all([
             put({ type: types.FETCH_REQUESTS_SUCCESS, requests}),
-            put({ type: types.SELECTED_REQUEST, request: requests[0]})
+            put({ type: types.SELECTED_REQUEST, request: requests.results[0]})
         ]);
     } catch (error) {
         yield put({ type: types.FETCH_REQUESTS_FAILURE, error});

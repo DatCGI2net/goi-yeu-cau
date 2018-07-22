@@ -19,7 +19,7 @@ class LoginPage extends React.Component {
         this.setState({[input]: value.target.value});
     }
     
-    // handle search 
+    // handle login 
     handleLogin(event) {
         event.preventDefault();
         const { email, password } = this.state;
