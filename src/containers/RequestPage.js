@@ -22,10 +22,10 @@ class RequestPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchAllRequestsAction(null));
     }
-    handleReply() {
+    handleReply(event) {
         console.log('handle Reply');
     }
-    handleReplyChange() {
+    handleReplyChange(input, value) {
         console.log('handleReplyOnChange');
     }
 
@@ -94,7 +94,7 @@ class RequestPage extends React.Component {
 RequestPage.propTypes = {
     dispatch: PropTypes.func.isRequired,
     requests: PropTypes.object,
-    selectedRequest: PropTypes.object,
+    requestId: PropTypes.Int.isRequired,
 };
 
 //stat to props

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router';
 import RequestItem from './RequestItem';
 import ResultForm from './ResultForm.js';
 
@@ -48,15 +48,15 @@ class RequestListPage extends React.Component {
                 <div className="panel panel-default" key={selectedRequest.id} >
                     
                     <div className="panel-heading">{selectedRequest.message}</div>
-                    <ResultForm 
-                    onHandleReplyChange={onHandleReplyChange}
-                    onHandleReply={onHandleReply}
-                    onHandleBack={this.toggleResultForm}
-                     />
+                    
 
                     <div className="panel-body">
                         <span className="col-sm-6 text text-xs">Date: {selectedRequest.created}</span>
-                        <span className="col-sm-6"><button onClick={() => {this.toggleResultForm()}} className="btn btn-inf">Reply</button>: {(selectedRequest.results && selectedRequest.results.length)?
+                        <span className="col-sm-6">
+                        <Link to="{`/reply/${selectedRequest.id}`}">
+                    <button className="btn btn-info">Add Reply</button>
+                    </Link>
+                        : {(selectedRequest.results && selectedRequest.results.length)?
                                 selectedRequest.results.length:
                                 0
                                 }</span>
@@ -108,8 +108,8 @@ RequestListPage.propTypes = {
     selectedRequest: PropTypes.object,
     onHandleSelectRequest: PropTypes.func.isRequired,
     onHandlePageClick: PropTypes.func.isRequired,
-    onHandleReplyChange: PropTypes.func.isRequired,
-    onHandleReply: PropTypes.func.isRequired,
+    //onHandleReplyChange: PropTypes.func.isRequired,
+    //onHandleReply: PropTypes.func.isRequired,
 };
 
 export default RequestListPage;
